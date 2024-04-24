@@ -1,8 +1,16 @@
 return {
     'mfussenegger/nvim-dap',
+    dependencies = {
+        "rcarriga/nvim-dap-ui",
+        "mfussenegger/nvim-dap",
+        "nvim-neotest/nvim-nio",
+    },
+
     config = function ()
         local dap, dapui = require("dap"), require("dapui")
         print("config of the debug or dap is executing")
+
+        require("dapui").setup()
 
         dap.listeners.before.attach.dapui_config = function()
             dapui.open()
@@ -21,3 +29,4 @@ return {
         vim.keymap.set('n', '<leader>vc', dap.continue)
     end,
 }
+
